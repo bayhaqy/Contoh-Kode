@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="icon" type="image/x-icon" href="https://www.elcreativeacademy.com/favicon.ico" />
-    <link rel="stylesheet" href="../../dist/firebase-auth.css">
-</head>
-<body>
-    <div id="app" class="app max-w-3xl mx-auto p-4"></div>
-    <script src="./scripts/config.js"></script>
-    <script src="../../dist/firebase-auth.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Firebase Auth</title>
+        <link rel="icon" type="image/x-icon" href="https://www.elcreativeacademy.com/favicon.ico" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elhakimyasya/Contoh-Kode@ffd057bc708e1d3294b292edd407870fefd1b29f/dist/firebase-auth.css" />
+    </head>
+    <body>
+        <div id="app" class="app mx-auto max-w-3xl p-4"></div>
+
+<b:if cond="data:view.isPage">
+    <script>
+        const firebaseConfig = {
+            apiKey: 'AIzaSyBvx6U_qgSu4uyHwwla5DKzhw5JqevtjIw',
+            authDomain: 'elcreative-login.firebaseapp.com',
+            projectId: 'elcreative-login',
+            storageBucket: 'elcreative-login.appspot.com',
+            messagingSenderId: '461246072776',
+            appId: '1:461246072776:web:a38923b07067feb61d22fd',
+        };
+        var pageDashboard = 'index.html';
+        var container = document.querySelector('.app');
+        var signInButton = document.body;
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/elhakimyasya/Contoh-Kode@ffd057bc708e1d3294b292edd407870fefd1b29f/dist/firebase-auth.js"></script>
+</b:if>
+    </body>
 </html>

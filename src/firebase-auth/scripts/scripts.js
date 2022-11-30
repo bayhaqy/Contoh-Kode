@@ -58,5 +58,4 @@ import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, si
     firebaseConfig: firebaseConfig,
     pageDashboard: pageDashboard,
     container: container,
-    signInButton: signInButton,
 })
