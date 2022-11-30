@@ -1,0 +1,35 @@
+{
+  "name": "contoh-kode",
+  "version": "1.0.0",
+  "description": "Kumpulan Contoh Kode di EL Creative Academy",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/assets/styles/tailwind.css -o ./src/assets/styles/styles.min.css --minify && gulp build:production",
+    "webpack": "webpack --mode=production"
+  },
+  "keywords": [
+    "blogger",
+    "blogspot",
+    "elcreative",
+    "academy",
+    "elca"
+  ],
+  "author": {
+    "name": "Yasya El Hakim",
+    "email": "yasyaelhakim@gmail.com",
+    "url": "https://www.elcreativeacademy.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
+    "autoprefixer": "^10.4.13",
+    "babel-loader": "^9.1.0",
+    "firebase": "^9.14.0",
+    "prettier": "^2.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.0",
+    "sass": "^1.56.1",
+    "tailwindcss": "^3.2.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  }
+}
