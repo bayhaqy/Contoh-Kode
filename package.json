@@ -4,7 +4,7 @@
   "description": "Kumpulan Contoh Kode di EL Creative Academy",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss -i ./src/assets/styles/tailwind.css -o ./src/assets/styles/styles.min.css --minify && gulp build:production",
+    "build": "npx tailwindcss -i ./src/assets/styles/tailwind.css -o ./src/assets/styles/styles.min.css --minify",
     "webpack": "webpack --mode=production"
   },
   "keywords": [

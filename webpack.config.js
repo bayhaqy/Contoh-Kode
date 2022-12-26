@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         // auth: './plugins/auth/scripts/script.js',
         "firebase-auth": './src/firebase-auth/scripts/scripts.js',
+        "table-of-content": './src/table-of-contents/scripts/scripts.js',
         // midtrans: './plugins/midtrans/scripts/script.js',
         // drive: './plugins/drive/scripts/script.js',
         // main: './plugins/scripts.js',
