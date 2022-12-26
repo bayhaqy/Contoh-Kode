@@ -105,4 +105,6 @@ const initTOC = (selector, target, options) => {
     };
 }
 
-initTOC(elementPostBody, '.content_toc')
+initTOC(elementPostBody, '.content_toc', {
+    tocElementTarget: '.content_toc'
+})
