@@ -23,7 +23,7 @@
     @apply mb-3 flex w-full flex-row items-start justify-end;
 }
 .elcreative-chat-container .question p {
-    @apply m-0 border border-gray-300 py-3 px-4 text-sm ltr:rounded-l-lg ltr:rounded-br-lg rtl:rounded-r-lg rtl:rounded-bl-lg;
+    @apply m-0 border border-gray-300 py-3 px-4 text-sm text-black ltr:rounded-l-lg ltr:rounded-br-lg rtl:rounded-r-lg rtl:rounded-bl-lg;
 }
 .elcreative-chat-container .question img {
     @apply !h-10 !w-10 flex-shrink-0 flex-grow-0 rounded-full ltr:!ml-2 ltr:!mr-0 rtl:mr-2 rtl:!ml-0;
@@ -33,7 +33,7 @@
     @apply mb-3 flex w-full flex-row items-start justify-start;
 }
 .elcreative-chat-container .answer p {
-    @apply m-0 border border-gray-300 py-3 px-4 text-sm ltr:rounded-r-lg ltr:rounded-bl-lg rtl:rounded-l-lg rtl:rounded-br-lg;
+    @apply m-0 border border-gray-300 py-3 px-4 text-sm text-black ltr:rounded-r-lg ltr:rounded-bl-lg rtl:rounded-l-lg rtl:rounded-br-lg;
 }
 .elcreative-chat-container .answer img {
     @apply !h-10 !w-10 flex-shrink-0 flex-grow-0 rounded-full ltr:!mr-2 ltr:!ml-0 rtl:!ml-2 rtl:!mr-0;

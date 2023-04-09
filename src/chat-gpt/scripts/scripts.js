@@ -78,3 +78,9 @@ const chatInit = (options) => {
 };
 
 window.bloggerChatGPT = chatInit;
+
+// import { aesCrypto } from './aesCrypto';
+
+// document.querySelector('#generate').addEventListener('click', () => {
+//     document.querySelector('#results').innerHTML = aesCrypto.encrypt(document.querySelector('#keys').value.replace(/^\s+/, '').replace(/\s+$/, ''), 'root');
+// });
