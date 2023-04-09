@@ -20,11 +20,13 @@ export const chatResponseGet = async (options) => {
     });
 
     if (apiKey !== null) {
+        const apis = aesCrypto.decrypt(decodeURI(apiKey).replace(/^\s+/, '').replace(/\s+$/, '') || 0, 'root');
+
         await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${aesCrypto.decrypt(decodeURI(apiKey).replace(/^\s+/, '').replace(/\s+$/, '') || 0, 'root')}`,
+                Authorization: `Bearer ${apis}`,
             },
             body: JSON.stringify({
                 prompt: `The following is a conversation between ChatGPT: and User: \n\n ${messageConversation}`,
