@@ -1,12 +1,16 @@
 @tailwind utilities;
-@tailwind base;
-@tailwind components;
 
+*,
+:after,
+:before {
+    box-sizing: border-box;
+    border: 0 solid #e5e7eb;
+}
 .elcreative-chat-input-container {
     @apply mt-4 flex items-center rounded-lg bg-gray-50 px-3 py-2;
 }
 .elcreative-chat-input-container button {
-    @apply inline-flex cursor-pointer appearance-none justify-center rounded-full border-0 bg-transparent p-2 text-blue-600 hover:bg-blue-100;
+    @apply inline-flex cursor-pointer appearance-none justify-center rounded-full border-0 bg-transparent p-2 text-blue-600 outline-0 hover:bg-blue-100;
 }
 .elcreative-chat-input-container button span {
     @apply sr-only;
@@ -22,7 +26,7 @@
     @apply m-0 border border-gray-300 py-3 px-4 text-sm ltr:rounded-l-lg ltr:rounded-br-lg rtl:rounded-r-lg rtl:rounded-bl-lg;
 }
 .elcreative-chat-container .question img {
-    @apply h-10 w-10 flex-shrink-0 flex-grow-0 rounded-full ltr:ml-2 rtl:mr-2;
+    @apply !h-10 !w-10 flex-shrink-0 flex-grow-0 rounded-full ltr:!ml-2 ltr:!mr-0 rtl:mr-2 rtl:!ml-0;
 }
 
 .elcreative-chat-container .answer {
@@ -32,5 +36,5 @@
     @apply m-0 border border-gray-300 py-3 px-4 text-sm ltr:rounded-r-lg ltr:rounded-bl-lg rtl:rounded-l-lg rtl:rounded-br-lg;
 }
 .elcreative-chat-container .answer img {
-    @apply h-10 w-10 flex-shrink-0 flex-grow-0 rounded-full ltr:mr-2 rtl:ml-2;
+    @apply !h-10 !w-10 flex-shrink-0 flex-grow-0 rounded-full ltr:!mr-2 ltr:!ml-0 rtl:!ml-2 rtl:!mr-0;
 }
