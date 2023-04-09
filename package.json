@@ -4,7 +4,7 @@
   "description": "Kumpulan Contoh Kode di EL Creative Academy",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss -i ./src/assets/styles/tailwind.css -o ./src/assets/styles/styles.min.css --minify",
+    "build": "npx tailwindcss -i ./src/chat-gpt/styles/styles.css -o ./dist/chat-gpt.css --minify",
     "webpack": "webpack --mode=production"
   },
   "keywords": [
