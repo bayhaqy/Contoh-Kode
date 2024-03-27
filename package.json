@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tailwindcss -i ./src/chat-gpt/styles/styles.css -o ./dist/chat-gpt.css --minify",
+    "build-gemini-bard": "npx tailwindcss -i ./src/gemini-bard/styles/styles.css -o ./dist/gemini-bard.css --minify",
+    "package-update": "ncu -u --reject del,gulp-autoprefixer && npm install",
     "webpack": "webpack --mode=production"
   },
   "keywords": [
@@ -21,15 +23,20 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.2",
-    "autoprefixer": "^10.4.13",
-    "babel-loader": "^9.1.0",
-    "firebase": "^9.14.0",
-    "prettier": "^2.8.0",
-    "prettier-plugin-tailwindcss": "^0.2.0",
-    "sass": "^1.56.1",
-    "tailwindcss": "^3.2.4",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0"
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "autoprefixer": "^10.4.19",
+    "babel-loader": "^9.1.3",
+    "firebase": "^10.9.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-babel-minify": "^0.5.2",
+    "npm-check-updates": "^16.14.18",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.13",
+    "sass": "^1.72.0",
+    "tailwindcss": "^3.4.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
