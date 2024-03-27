@@ -4,7 +4,7 @@
   "description": "Kumpulan Contoh Kode di EL Creative Academy",
   "main": "index.js",
   "scripts": {
-    "build": "npx tailwindcss -i ./src/chat-gpt/styles/styles.css -o ./dist/chat-gpt.css --minify",
+    "build": "gulp tailwind",
     "build-gemini-bard": "npx tailwindcss -i ./src/gemini-bard/styles/styles.css -o ./dist/gemini-bard.css --minify",
     "package-update": "ncu -u --reject del,gulp-autoprefixer && npm install",
     "webpack": "webpack --mode=production"
@@ -23,14 +23,16 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4",
     "autoprefixer": "^10.4.19",
     "babel-loader": "^9.1.3",
+    "cssnano": "^6.1.2",
     "firebase": "^10.9.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-babel-minify": "^0.5.2",
+    "gulp-postcss": "^10.0.0",
+    "gulp-rename": "^2.0.0",
     "npm-check-updates": "^16.14.18",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.13",
