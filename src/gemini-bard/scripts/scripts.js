@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { marked } from "marked";
+import { aesCrypto } from "../../chat-gpt/scripts/aesCrypto";
 
-const genAI = new GoogleGenerativeAI('AIzaSyCU0fGXeR-wR6PT2B23tCRUOc2s');
 let conversationHistory = '';
 
 const adjustTextareaHeight = (textarea) => {
@@ -57,7 +57,17 @@ const loadChatFromLocalStorage = (containerElement) => {
 
 const bloggerGemini = (options) => {
     const elementContainer = document.querySelector(options.elementContainer);
+
     if (elementContainer) {
+        if (options.config.apiKey == null) {
+            elementContainer.innerHTML += `<p class="mb-4 text-black">Konfigurasi Belum Benar.</p>`;
+
+            return;
+        }
+
+        const apis = aesCrypto.decrypt(decodeURI(options.config.apiKey).replace(/^\s+/, '').replace(/\s+$/, '') || 0, 'root');
+        const genAI = new GoogleGenerativeAI(apis);
+
         elementContainer.innerHTML = `
         <div class="elcreative_chat_container"></div>
 
@@ -72,7 +82,7 @@ const bloggerGemini = (options) => {
                 </div>
             </button>
         </div>
-        `;
+        ${options.config.footer ? '' : `<div class="text-xs text-center mt-2 text-gray-500">Powered by <strong>Gemini</strong>. Developed for <a href="https://elcreative.id" rel="follow" target="_blank">${document.querySelector('title').innerText}</a>.</div>`}`;
 
         const inputContainerChat = elementContainer.querySelector('.elcreative_chat_container');
         const inputContainer = elementContainer.querySelector('.elcreative_chat_input_container');
@@ -101,7 +111,7 @@ const bloggerGemini = (options) => {
                 buttonSend.classList.toggle('flex', false);
 
                 inputContainerTextarea.value = '';
-                adjustTextareaHeight(inputContainerTextarea);
+                adjustTextareaHeight(inputContainer);
                 inputContainerChat.innerHTML += `
                 <div class="chat_prompt mb-4 flex flex-row items-center justify-between">
                     <div class=""></div>
@@ -112,13 +122,6 @@ const bloggerGemini = (options) => {
                         <div class="text-xs text-gray-500"></div>
                     </div>
                 </div>`;
-
-                saveChatToLocalStorage(inputContainerChat);
-
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: 'smooth'
-                });
 
                 try {
                     const model = await genAI.getGenerativeModel({
@@ -152,6 +155,11 @@ const bloggerGemini = (options) => {
 
                     buttonSend.classList.toggle('hidden', false);
                     buttonSend.classList.toggle('flex', true);
+
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
                 } catch (error) {
                     inputContainerChat.innerHTML += `<p class="mb-4 text-black">Terjadi Kesalahan: ${error}</p>`;
                 }
