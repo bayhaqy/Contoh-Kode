@@ -1,9 +1,10 @@
 module.exports = {
   darkMode: "class",
   content: [
-    // "./src/firebase-auth/*.{xml,html,js}",
-    // "./src/firebase-auth/**/*.{xml,html,js}",
+    "./src/firebase-auth/*.{xml,html,js}",
+    "./src/firebase-auth/**/*.{xml,html,js}",
     "./src/chat-gpt/**/*.{xml,html,js}",
+    "./src/gemini-bard/**/*.{xml,html,js}",
   ],
   theme: {
   },
