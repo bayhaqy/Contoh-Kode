@@ -16,7 +16,6 @@ const adjustTextareaHeight = (textarea, chatContainer) => {
         textarea.classList.toggle('mb-4');
     }
 
-    chatContainer.className = numberOfLines < 1 ? 'elcreative_chat_input_container flex min-h-[58px] w-full flex-row items-center justify-center rounded-full border border-blue-700 bg-white p-2 focus-within:shadow-md' : 'elcreative_chat_input_container flex min-h-[58px] w-full flex-col items-end justify-center rounded-lg border border-blue-700 bg-white p-2 focus-within:shadow-md';
 
 };
 
