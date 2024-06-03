@@ -4,8 +4,7 @@ import { aesCrypto } from "../../chat-gpt/scripts/aesCrypto";
 
 let conversationHistory = '';
 
-const adjustTextareaHeight = (textarea) => {
-    const parentElement = textarea.parentElement;
+const adjustTextareaHeight = (textarea, chatContainer) => {
     const lineHeight = parseFloat(getComputedStyle(textarea).lineHeight);
 
     textarea.style.height = 'auto';
@@ -13,18 +12,12 @@ const adjustTextareaHeight = (textarea) => {
 
     const numberOfLines = Math.ceil(textarea.scrollHeight / lineHeight);
 
-    if (numberOfLines <= 1) {
-        parentElement.style.borderRadius = '9999px'; // rounded-full
-        parentElement.style.flexDirection = 'row';
-        parentElement.style.alignItems = 'center';
-    } else {
-        parentElement.style.borderRadius = '0.5rem'; // rounded-lg
-        parentElement.style.flexDirection = 'column';
-        parentElement.style.alignItems = 'end';
+    if (numberOfLines > 1) {
+        textarea.classList.toggle('mb-4');
     }
 
-    // Add margin-bottom to the textarea if more than one line
-    textarea.style.marginBottom = numberOfLines > 1 ? '1rem' : '0';
+    chatContainer.className = numberOfLines < 1 ? 'elcreative_chat_input_container flex min-h-[58px] w-full flex-row items-center justify-center rounded-full border border-blue-700 bg-white p-2 focus-within:shadow-md' : 'elcreative_chat_input_container flex min-h-[58px] w-full flex-col items-end justify-center rounded-lg border border-blue-700 bg-white p-2 focus-within:shadow-md';
+
 };
 
 const getConversationHistory = (containerElement) => {
@@ -44,14 +37,20 @@ const getConversationHistory = (containerElement) => {
 };
 
 const saveChatToLocalStorage = (containerElement) => {
-    const chatHistory = containerElement.innerHTML.trim();
-    localStorage.setItem('chatHistory', chatHistory);
+    const currentChatHistory = localStorage.getItem('geminiChatHistory');
+    const geminiChatHistory = containerElement.innerHTML.trim();
+
+    // Check if geminiChatHistory is already present in localStorage
+    if (!currentChatHistory) {
+        localStorage.setItem('geminiChatHistory', geminiChatHistory);
+    }
 };
 
+
 const loadChatFromLocalStorage = (containerElement) => {
-    const chatHistory = localStorage.getItem('chatHistory');
-    if (chatHistory) {
-        containerElement.innerHTML = chatHistory;
+    const geminiChatHistory = localStorage.getItem('geminiChatHistory');
+    if (geminiChatHistory) {
+        containerElement.innerHTML = geminiChatHistory;
     }
 };
 
@@ -92,17 +91,22 @@ const bloggerGemini = (options) => {
         loadChatFromLocalStorage(inputContainerChat);
 
         inputContainerTextarea.addEventListener('input', function () {
-            adjustTextareaHeight(inputContainerTextarea);
+            adjustTextareaHeight(inputContainerTextarea, inputContainer);
         });
 
         buttonSend.addEventListener('click', async (event) => {
             event.preventDefault();
 
             const userInput = inputContainerTextarea.value.trim();
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
+
+            const chatAnswers = inputContainerChat.querySelectorAll('.chat_answer');
+            const lastChatAnswer = chatAnswers[chatAnswers.length - 1];
+            if (lastChatAnswer) {
+                lastChatAnswer.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end'
+                });
+            }
 
             if (userInput) {
                 conversationHistory = getConversationHistory(inputContainerChat);
@@ -111,7 +115,7 @@ const bloggerGemini = (options) => {
                 buttonSend.classList.toggle('flex', false);
 
                 inputContainerTextarea.value = '';
-                adjustTextareaHeight(inputContainer);
+                adjustTextareaHeight(inputContainerTextarea, inputContainer);
                 inputContainerChat.innerHTML += `
                 <div class="chat_prompt mb-4 flex flex-row items-center justify-between">
                     <div class=""></div>
@@ -140,7 +144,7 @@ const bloggerGemini = (options) => {
                     const htmlContent = marked(responseText);
 
                     inputContainerChat.innerHTML += `
-                    <div id="chat_answer" class="chat_answer mb-4 flex flex-row items-center justify-between">
+                    <div class="chat_answer mb-4 flex flex-row items-center justify-between">
                         <div class="flex w-full flex-col items-end justify-center rounded-b-lg rounded-tr-lg bg-black/10 px-3">
                             <div class="w-full overflow-x-auto">
                                 ${htmlContent}
@@ -156,9 +160,9 @@ const bloggerGemini = (options) => {
                     buttonSend.classList.toggle('hidden', false);
                     buttonSend.classList.toggle('flex', true);
 
-                    window.scrollTo({
-                        top: document.body.scrollHeight,
-                        behavior: 'smooth'
+                    inputContainerChat.lastChild.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'end'
                     });
                 } catch (error) {
                     inputContainerChat.innerHTML += `<p class="mb-4 text-black">Terjadi Kesalahan: ${error}</p>`;
