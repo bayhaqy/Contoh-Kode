@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { marked } from "marked";
 
-const genAI = new GoogleGenerativeAI('AIzaSyCU0fGXeR-wR6PT2B23tCRUOc2sTcOzN-8');
+const genAI = new GoogleGenerativeAI('AIzaSyCU0fGXeR-wR6PT2B23tCRUOc2s');
 let conversationHistory = '';
 
 const adjustTextareaHeight = (textarea) => {
@@ -13,13 +13,18 @@ const adjustTextareaHeight = (textarea) => {
 
     const numberOfLines = Math.ceil(textarea.scrollHeight / lineHeight);
 
-    parentElement.classList.toggle('rounded-full', numberOfLines <= 1);
-    parentElement.classList.toggle('rounded-lg', numberOfLines > 1);
-    parentElement.classList.toggle('flex-row', numberOfLines <= 1);
-    parentElement.classList.toggle('flex-col', numberOfLines > 1);
-    parentElement.classList.toggle('items-center', numberOfLines <= 1);
-    parentElement.classList.toggle('items-end', numberOfLines > 1);
-    textarea.classList.toggle('mb-4', numberOfLines > 1);
+    if (numberOfLines <= 1) {
+        parentElement.style.borderRadius = '9999px'; // rounded-full
+        parentElement.style.flexDirection = 'row';
+        parentElement.style.alignItems = 'center';
+    } else {
+        parentElement.style.borderRadius = '0.5rem'; // rounded-lg
+        parentElement.style.flexDirection = 'column';
+        parentElement.style.alignItems = 'end';
+    }
+
+    // Add margin-bottom to the textarea if more than one line
+    textarea.style.marginBottom = numberOfLines > 1 ? '1rem' : '0';
 };
 
 const getConversationHistory = (containerElement) => {
@@ -39,7 +44,7 @@ const getConversationHistory = (containerElement) => {
 };
 
 const saveChatToLocalStorage = (containerElement) => {
-    const chatHistory = containerElement.innerHTML;
+    const chatHistory = containerElement.innerHTML.trim();
     localStorage.setItem('chatHistory', chatHistory);
 };
 
