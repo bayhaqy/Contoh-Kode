@@ -2977,6 +2977,22 @@
                     '<div class="text-xs text-center mt-2 text-gray-500">Powered by <strong>Gemini</strong>. Developed for <a href="https://blog.bayhaqy.my.id" rel="follow" target="_blank">'
                     .concat(document.querySelector("title").innerText, "</a>.</div>"));
             var o = r.querySelector(".elcreative_chat_container"),
+                // --- TAMBAHKAN BLOK KODE INI ---
+                (function tampilkanPesanSelamatDatang() {
+                    const riwayatTersimpan = localStorage.getItem("geminiChatHistory");
+                    if (!riwayatTersimpan) {
+                        o.innerHTML = `
+                            <div class="chat_answer mb-4 flex">
+                                <div class="flex w-full flex-col items-start justify-center rounded-b-lg rounded-tr-lg bg-black/10 px-3 py-2">
+                                    <p>Halo! 👋 Saya adalah Bayhaqy AI. Ada yang bisa saya bantu?</p>
+                                </div>
+                            </div>
+                        `;
+                        o.classList.add("mb-4");
+                    }
+                })();
+                // ---------------------------------
+                
                 a = r.querySelector(".elcreative_chat_input_container"),
                 l = a.querySelector("textarea"),
                 c = a.querySelector("button");
