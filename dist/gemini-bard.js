@@ -2974,7 +2974,7 @@
             r.innerHTML =
                 '\n        <div class="elcreative_chat_container"></div>\n\n        <div class="elcreative_chat_input_container flex min-h-[58px] w-full flex-row items-center justify-center rounded-full border border-blue-700 bg-white p-2 focus-within:shadow-md">\n            <textarea class="w-full resize-none appearance-none border-transparent bg-transparent px-1.5 outline-none ring-0 text-black" rows="1" placeholder="Apa yang bisa kami bantu hari ini?"></textarea>\n            <button class="relative flex w-auto h-auto cursor-pointer appearance-none rounded-full bg-blue-700 p-2 text-center text-sm text-white shadow transition-shadow hover:shadow-md focus:shadow-md active:shadow-lg" type="button" aria-label="Kirim" title="Kirim">\n                <div class="flex flex-row items-center justify-center">\n                    <svg class="shrink-0 grow-0" viewBox="0 0 24 24" fill="currentColor" height="24" width="24" aria-hidden="true">\n                        <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z"></path>\n                    </svg>\n                    <span class="sr-only">Kirim</span>\n                </div>\n            </button>\n        </div>\n        '
                 .concat(e.config.footer ? "" :
-                    '<div class="text-xs text-center mt-2 text-gray-500">Powered by <strong>Gemini</strong>. Developed for <a href="https://elcreative.id" rel="follow" target="_blank">'
+                    '<div class="text-xs text-center mt-2 text-gray-500">Powered by <strong>Gemini</strong>. Developed for <a href="https://blog.bayhaqy.my.id" rel="follow" target="_blank">'
                     .concat(document.querySelector("title").innerText, "</a>.</div>"));
             var o = r.querySelector(".elcreative_chat_container"),
                 a = r.querySelector(".elcreative_chat_input_container"),
@@ -3003,6 +3003,8 @@
                                         '</p>\n                        </div>\n                        <div class="text-xs text-gray-500"></div>\n                    </div>\n                </div>'
                                         ), e.prev = 13, e.next = 16, i.getGenerativeModel({
                                         model: "gemini-1.5-flash-latest",
+                                        // TAMBAHKAN BAGIAN INI
+                                        systemInstruction: "Anda adalah asisten AI yang ramah dan sangat membantu di https://blog.bayhaqy.my.id/. Tugas utama Anda adalah membantu pengunjung mempelajari dan mencari informasi yang ada di dalam artikel-artikel di website ini. Selalu prioritaskan jawaban berdasarkan informasi dari website. Jika informasi tidak ditemukan di website atau pertanyaannya bersifat umum, Anda boleh menggunakan pengetahuan umum Anda untuk menjawab. Jawablah selalu dalam bahasa yang sopan dan jelas, sesuaikan jawaban bahasa tergantung dari pertanyaan. Kamu berhak menolak jika ragu akan jawabanmu.",
                                         parameters: {
                                             temperature: .7,
                                             max_tokens: 150,
